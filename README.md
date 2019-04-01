@@ -2,9 +2,6 @@
 
 > RabbitMQ and SSL made easy for tests.
 
-[![Build Status](https://travis-ci.org/roboconf/rabbitmq-with-ssl-in-docker.svg?branch=master)](https://travis-ci.org/roboconf/rabbitmq-with-ssl-in-docker)
-[![License](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-
 This repository aims at building a RabbitMQ container with SSL enabled.  
 Generation of the server certificates, as well as server configuration, are performed during
 the image's build. A client certificate is generated when a container is created from this image.
@@ -36,9 +33,9 @@ You can verify client certificates were generated with `ls /tmp/docker-test`. Th
 a key store and a trust store, both in the PKCS12 format.
 
 ## To verify weather the container is up or not
-
+````
 docker ps 
-
+````
 ## To stop the container
 
 `docker stop <container-id>` will stop the container.  
