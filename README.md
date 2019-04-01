@@ -16,7 +16,7 @@ host system. Client certificates are generated under the **/home/client** direct
 ## To build this image
 
 ```
-cd tests && ./build.sh
+docker build --no-cache=true -t rabbitmq-ssl .
 ```
 
 The generated image contains SSL certificates for the server side.
@@ -27,7 +27,7 @@ The generated image contains SSL certificates for the server side.
 ```
 mkdir -p /tmp/docker-test \
 	&& rm -rf /tmp/docker-test/* \
-	&& docker run -d --rm -p 12000:5671 -v /tmp/docker-test:/home/client rabbitmq-with-ssl:latest
+	&& docker run -d --rm -p 12000:5671 -v /tmp/docker-test:/home/client rabbitmq-ssl:latest
 ```
 
 Here, we bind the port 5671 from the container on the 12000 port on the local host.  
@@ -35,18 +35,14 @@ We also share a local directory with the container, to retrieve the client certi
 You can verify client certificates were generated with `ls /tmp/docker-test`. This directory contains
 a key store and a trust store, both in the PKCS12 format.
 
+## To verify weather the container is up or not
+
+docker ps 
 
 ## To stop the container
 
 `docker stop <container-id>` will stop the container.  
 If you kept the `--rm` option, it will be deleted directly.
-
-
-## To run quick tests
-
-```
-cd tests && ./test.sh
-```
 
 
 ## To diagnose troubles
